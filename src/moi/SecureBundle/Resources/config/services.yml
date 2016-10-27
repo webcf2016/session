@@ -1,0 +1,4 @@
+services:
+#    moi_secure.example:
+#        class: moi\SecureBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

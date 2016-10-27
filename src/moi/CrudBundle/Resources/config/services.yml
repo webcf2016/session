@@ -1,0 +1,4 @@
+services:
+#    moi_crud.example:
+#        class: moi\CrudBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

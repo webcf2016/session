@@ -1,0 +1,30 @@
+# app/config/security.yml
+
+security:
+    role_hierarchy:
+        # Un admin hérite des droits d'auteur et de modérateur
+        ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
+        # On garde ce rôle superadmin, il nous resservira par la suite
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:      ^/
+            anonymous:    true
+            provider:     in_memory
+            form_login:
+                login_path: login
+                check_path: login_check
+            logout:
+                path:       logout
+                target:     /
